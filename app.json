@@ -15,7 +15,7 @@
     "position": "bottom",
     "list": [
       {
-        "text": "添加",
+        "text": "",
         "pagePath": "pages/index/index"
       },
       {
