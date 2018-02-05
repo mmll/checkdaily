@@ -2,14 +2,14 @@
 <form bindsubmit="formSubmit" >
 <view>
   <view class="section">
-    <input type="text" id="taskname" placeholder="名称" auto-focus/>
+    <input type="text" id="taskname" placeholder="名称" bindblur="inputBlur" auto-focus/>
   </view>
   <radio-group class="radio-group" bindchange="radioChange">
   <label class="radio" wx:key="{{items}}" wx:for="{{items}}">
     <radio value="{{item.value}}" checked="{{item.checked}}"/>{{item.name}}
   </label>
 </radio-group>
-<view wx:if="{{taskItem.period=='week'}}">
+<view wx:if="{{showPeriod}}">
 <picker bindchange="bindPickerChange"  value="{{index}}" range="{{dayRange}}">
     <view class="picker">
       频率：{{dayRange[index]}}

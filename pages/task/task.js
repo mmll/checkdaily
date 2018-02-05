@@ -9,15 +9,51 @@ Page({
       {name:"日", value: "day", checked: true},
       {name:"周", value: "week", checked: false}],
     dayRange: ["1","2","3","4","5","6"],
-    taskItem:{name:"", period:"day", times:""}
+    showPeriod: false
   },
   radioChange: function (e){
-    this.data.taskItem.period = e.detail.value;
+    if(e.detail.value == 'day'){
+      this.setData({
+        showPeriod: false
+      })
+    }
+    else{
+      this.setData({
+        showPeriod: true
+      })
+    }
+    this.setData({
+      taskPeriod: e.detail.value
+    })
+  },
+  inputBlur: function(e){
+    this.setData({
+      taskName: e.detail.value
+    })
   },
   bindPickerChange: function (e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
       index: e.detail.value
+    })
+    this.setDate({
+      taskTimes: e.detail.value-1
+    })
+  },
+  formSubmit: function (e) {
+    var taskItem = {
+      'taskName': this.data.taskName,
+      'taskPeriod': this.data.taskPeriod,
+      'taskTimes': this.data.taskTimes
+    }
+    var pages = getCurrentPages();
+    var prevPage = pages[pages.length - 2];  //上一个页面
+    prevPage.setData({
+      newTask: taskItem
+    })
+    console.log('form发生了submit事件，携带数据为：', e.detail.value)
+    wx.navigateBack({
+      url: '../goal/goal'
     })
   },
   /**
