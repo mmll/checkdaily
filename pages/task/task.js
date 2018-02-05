@@ -1,13 +1,25 @@
-// pages/goal/goal.js
+// pages/task/task.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-  
+    items:[
+      {name:"日", value: "day", checked: true},
+      {name:"周", value: "week", checked: false}],
+    dayRange: ["1","2","3","4","5","6"],
+    taskItem:{name:"", period:"day", times:""}
   },
-
+  radioChange: function (e){
+    this.data.taskItem.period = e.detail.value;
+  },
+  bindPickerChange: function (e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      index: e.detail.value
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -62,28 +74,5 @@ Page({
    */
   onShareAppMessage: function () {
   
-  },
-  formSubmit: function (e) {
-    console.log('form发生了submit事件，携带数据为：', e.detail.value)
-  },
-  bindDateChange: function (e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
-    switch(e.target.id){
-      case "startdate":
-        this.setData({
-          startdate: e.detail.value
-        })
-      break;
-      case 'enddate':
-        this.setData({
-          enddate: e.detail.value
-        })
-      break;
-    }
-  },
-  navigateTask: function(){
-    wx.navigateTo({
-      url: '../task/task'
-    })
   }
 })

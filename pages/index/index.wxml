@@ -1,7 +1,7 @@
 <!--index.wxml-->
 <view class="container">
   <view class="userinfo">
-    <button send-message-path="pages/goal/goal" > +新建目标 </button>
+    <button bindtap='bindViewTap' send-message-path="pages/goal/goal" > + </button>
     <!-- <block wx:else>
 
     </block> -->

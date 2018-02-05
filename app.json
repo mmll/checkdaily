@@ -3,7 +3,8 @@
     "pages/index/index",
     "pages/logs/logs",
     "pages/goal/goal",
-    "pages/report/report"
+    "pages/report/report",
+    "pages/task/task"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -15,12 +16,16 @@
     "position": "bottom",
     "list": [
       {
-        "text": "",
+        "text": "汇报",
         "pagePath": "pages/index/index"
       },
       {
-        "text": "成绩",
+        "text": "打卡",
         "pagePath": "pages/report/report"
+      },
+      {
+        "text": "目标",
+        "pagePath": "pages/goal/goal"
       }
     ]
   }

@@ -1,0 +1,23 @@
+<!--pages/task/task.wxml-->
+<form bindsubmit="formSubmit" >
+<view>
+  <view class="section">
+    <input type="text" id="taskname" placeholder="名称" auto-focus/>
+  </view>
+  <radio-group class="radio-group" bindchange="radioChange">
+  <label class="radio" wx:key="{{items}}" wx:for="{{items}}">
+    <radio value="{{item.value}}" checked="{{item.checked}}"/>{{item.name}}
+  </label>
+</radio-group>
+<view wx:if="{{taskItem.period=='week'}}">
+<picker bindchange="bindPickerChange"  value="{{index}}" range="{{dayRange}}">
+    <view class="picker">
+      频率：{{dayRange[index]}}
+    </view>
+</picker>
+</view>
+<view class="">
+      <button form-type="submit"> 保存 </button>
+</view>
+</view>
+</form>

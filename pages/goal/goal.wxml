@@ -1,2 +1,29 @@
 <!--pages/goal/goal.wxml-->
-<text>pages/goal/goal.wxml</text>
+<form bindsubmit="formSubmit" >
+<view class="flex-wrp" style="height:100px;flex-direction:column;">
+  <view class="section">
+  <input type="text" id="goalname" placeholder="名称" auto-focus/>
+  </view>
+  <picker mode="date" id="startdate" value="{{startdate}}" start="" end="" bindchange="bindDateChange" >
+    <view class="picker">
+      起始日期: {{startdate}}
+    </view>
+  </picker>
+  <picker mode="date" id="enddate" value="{{enddate}}" start="" bindchange="bindDateChange" >
+    <view class="picker">
+      结束日期: {{enddate}}
+    </view>
+  </picker>
+</view>
+<view class="flex-wrp" style="flex-direction:column;">
+<scroll-view scroll-y style="" bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
+    <view class="userinfo">
+      <button bindtap='navigateTask'> + </button>
+    </view>
+    <view id="green" class="scroll-view-item bc_green"></view>
+    <view class="">
+      <button form-type="submit"> 保存 </button>
+    </view>
+  </scroll-view>
+</view>
+</form>
