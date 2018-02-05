@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-   taskList:[]
+    
   },
 
   /**
@@ -26,7 +26,12 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    var taskList = this.data.taskList;
+    if(this.data.taskList){
+      var taskList = this.data.taskList;
+    }
+    else{
+      var taskList = [];
+    }
     taskList.push(this.data.newTask);
     this.setData({newTask: null})
     this.setData({taskList: taskList});

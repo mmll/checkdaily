@@ -8,8 +8,9 @@ Page({
     items:[
       {name:"日", value: "day", checked: true},
       {name:"周", value: "week", checked: false}],
-    dayRange: ["1","2","3","4","5","6"],
-    showPeriod: false
+    dayRange: [1,2,3,4,5,6],
+    showPeriod: false,
+    taskPeriod: "day"
   },
   radioChange: function (e){
     if(e.detail.value == 'day'){
@@ -36,8 +37,8 @@ Page({
     this.setData({
       index: e.detail.value
     })
-    this.setDate({
-      taskTimes: e.detail.value-1
+    this.setData({
+      taskTimes: e.detail.value + 1
     })
   },
   formSubmit: function (e) {

@@ -17,6 +17,11 @@
 </view>
 <view class="flex-wrp" style="flex-direction:column;">
 <scroll-view scroll-y style="" bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
+    <block wx:if="{{taskList.length>1}}">
+      <view wx:for="{{taskList}}">
+        {{index}}: {{item.taskName}}, {{item.taskPeriod}}, {{item.taskTimes}}
+      </view>
+    </block>
     <view class="userinfo">
       <button bindtap='navigateTask'> + </button>
     </view>
