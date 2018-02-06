@@ -38,15 +38,20 @@ Page({
       index: e.detail.value
     })
     this.setData({
-      taskTimes: e.detail.value + 1
+      taskTimes: parseInt(e.detail.value) + 1
     })
   },
   formSubmit: function (e) {
+    if (!this.data.taskName || (this.data.taskPeriod == "week" && !this.data.taskTimes) || !this.data.taskPeriod ){
+        this.setData({ error: "填写完整内容", isError: true })
+        return false;
+    }
     var taskItem = {
       'taskName': this.data.taskName,
       'taskPeriod': this.data.taskPeriod,
       'taskTimes': this.data.taskTimes
     }
+    
     var pages = getCurrentPages();
     var prevPage = pages[pages.length - 2];  //上一个页面
     prevPage.setData({

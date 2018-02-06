@@ -1,5 +1,6 @@
 <!--pages/task/task.wxml-->
 <form bindsubmit="formSubmit" >
+<view style='color:red' wx:if="{{isError}}">{{error}}</view>
 <view>
   <view class="section">
     <input type="text" id="taskname" placeholder="名称" bindblur="inputBlur" auto-focus/>

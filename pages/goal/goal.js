@@ -5,21 +5,20 @@ Page({
    * 页面的初始数据
    */
   data: {
-    
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    this.getStartDate()
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
+
   },
 
   /**
@@ -32,7 +31,9 @@ Page({
     else{
       var taskList = [];
     }
-    taskList.push(this.data.newTask);
+    if(this.data.newTask){
+      taskList.push(this.data.newTask);
+    }
     this.setData({newTask: null})
     this.setData({taskList: taskList});
   },
@@ -71,23 +72,62 @@ Page({
   onShareAppMessage: function () {
   
   },
+
   formSubmit: function (e) {
     console.log('form发生了submit事件，携带数据为：', e.detail.value)
+    if (!this.data.goalName || !this.data.startDate || !this.data.endDate){
+      this.setData({ error: "填写完整内容", isError: true })
+        return false;
+    }
+    wx.request({
+      url: 'localhost:8080/goal', //仅为示例，并非真实的接口地址
+      data: {
+        name: this.data.goalName,
+        startDate: this.data.startDate,
+        endDate: this.data.endDate
+      },
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success: function (res) {
+        console.log(res.data)
+      }
+    })
   },
+
+  inputBlur: function (e) {
+    this.setData({
+      goalName: e.detail.value
+    })
+  },
+
   bindDateChange: function (e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
     switch(e.target.id){
-      case "startdate":
+      case "startDate":
         this.setData({
-          startdate: e.detail.value
+          startDate: e.detail.value
+        })
+        this.setData({
+          enddateRange: e.detail.value
         })
       break;
-      case 'enddate':
+      case 'endDate':
         this.setData({
-          enddate: e.detail.value
+          endDate: e.detail.value
         })
       break;
     }
+  },
+  getStartDate: function () {
+    var date = new Date(),
+      month = '' + (date.getMonth() + 1),
+      day = '' + date.getDate(),
+      year = date.getFullYear();
+
+    if (month.length < 2) month = '0' + month;
+    if (day.length < 2) day = '0' + day;
+    this.setData({ todayDate: [year, month, day].join('-') })
   },
   navigateTask: function(){
     wx.navigateTo({

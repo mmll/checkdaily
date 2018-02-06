@@ -1,25 +1,26 @@
 <!--pages/goal/goal.wxml-->
 <form bindsubmit="formSubmit" >
 <view class="flex-wrp" style="height:100px;flex-direction:column;">
+<view style='color:red' wx:if="{{isError}}">{{error}}</view>
   <view class="section">
-  <input type="text" id="goalname" placeholder="名称" auto-focus/>
+  <input type="text" id="goalname" placeholder="名称" bindblur="inputBlur" auto-focus/>
   </view>
-  <picker mode="date" id="startdate" value="{{startdate}}" start="" end="" bindchange="bindDateChange" >
+  <picker mode="date" id="startDate" value="{{startDate}}" start="{{todayDate}}" end="" bindchange="bindDateChange" >
     <view class="picker">
-      起始日期: {{startdate}}
+      起始日期: {{startDate}}
     </view>
   </picker>
-  <picker mode="date" id="enddate" value="{{enddate}}" start="" bindchange="bindDateChange" >
+  <picker mode="date" id="endDate" value="{{endDate}}" start="{{endDateRange}}" bindchange="bindDateChange" >
     <view class="picker">
-      结束日期: {{enddate}}
+      结束日期: {{endDate}}
     </view>
   </picker>
 </view>
 <view class="flex-wrp" style="flex-direction:column;">
 <scroll-view scroll-y style="" bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
-    <block wx:if="{{taskList.length>1}}">
+    <block wx:if="{{taskList.length>0}}">
       <view wx:for="{{taskList}}">
-        {{index}}: {{item.taskName}}, {{item.taskPeriod}}, {{item.taskTimes}}
+        <view wx:if="{{index>0}}">{{index}}: {{item.taskName}}, {{item.taskPeriod}}, {{item.taskTimes}}         </view>
       </view>
     </block>
     <view class="userinfo">
