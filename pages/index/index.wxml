@@ -1,7 +1,7 @@
 <!--index.wxml-->
 <view class="container">
   <view class="userinfo">
-    <button bindtap='bindViewTap' send-message-path="pages/goal/goal" > + </button>
+    <button bindtap='bindViewTap' send-message-path="pages/goal/goal" class="mui-btn mui-btn--fab mui-btn--primary"> + </button>
     <!-- <block wx:else>
 
     </block> -->

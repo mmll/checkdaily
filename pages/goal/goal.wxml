@@ -1,11 +1,11 @@
 <!--pages/goal/goal.wxml-->
-<form bindsubmit="formSubmit" >
-<view class="flex-wrp" style="height:100px;flex-direction:column;">
+<form bindsubmit="formSubmit" class="mui-form">
+<view class="flex-wrp mui-panel" style="flex-direction:column">
 <view style='color:red' wx:if="{{isError}}">{{error}}</view>
-  <view class="section">
+  <view class="section" class="mui-textfield">
   <input type="text" id="goalname" placeholder="名称" bindblur="inputBlur" auto-focus/>
   </view>
-  <picker mode="date" id="startDate" value="{{startDate}}" start="{{todayDate}}" end="" bindchange="bindDateChange" >
+  <picker mode="date" id="startDate" value="{{startDate}}" start="{{todayDate}}" end="" bindchange="bindDateChange" class="mui-select">
     <view class="picker">
       起始日期: {{startDate}}
     </view>
@@ -16,6 +16,7 @@
     </view>
   </picker>
 </view>
+<button bindtap='navigateTask'class="mui-btn mui-btn--fab mui-btn--primary"> + </button>
 <view class="flex-wrp" style="flex-direction:column;">
 <scroll-view scroll-y style="" bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
     <block wx:if="{{taskList.length>0}}">
@@ -23,12 +24,9 @@
         <view wx:if="{{index>0}}">{{index}}: {{item.taskName}}, {{item.taskPeriod}}, {{item.taskTimes}}         </view>
       </view>
     </block>
-    <view class="userinfo">
-      <button bindtap='navigateTask'> + </button>
-    </view>
     <view id="green" class="scroll-view-item bc_green"></view>
-    <view class="">
-      <button form-type="submit"> 保存 </button>
+    <view >
+      <button form-type="submit"  class="mui-btn mui-btn--raised"> 保存 </button>
     </view>
   </scroll-view>
 </view>
