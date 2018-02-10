@@ -2,8 +2,8 @@
 <view class="container">
   <view class="userinfo">
     <button bindtap='bindViewTap' send-message-path="pages/goal/goal" class="mui-btn mui-btn--fab mui-btn--primary"> + </button>
-    <!-- <block wx:else>
-
-    </block> -->
+      <view wx:for="{{goalList}}">
+        <view >{{item.name}}, {{item.startTime}}, {{item.endTime}}</view>
+      </view>
   </view>
 </view>

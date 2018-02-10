@@ -21,7 +21,7 @@
 <scroll-view scroll-y style="" bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
     <block wx:if="{{taskList.length>0}}">
       <view wx:for="{{taskList}}">
-        <view wx:if="{{index>0}}">{{index}}: {{item.taskName}}, {{item.taskPeriod}}, {{item.taskTimes}}         </view>
+        <view wx:if="{{index>0}}">{{index}}: {{item.name}}, {{item.period}}, {{item.times}}         </view>
       </view>
     </block>
     <view id="green" class="scroll-view-item bc_green"></view>

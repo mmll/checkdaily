@@ -16,6 +16,7 @@ Page({
     })
   },
   onLoad: function () {
+    var that = this;
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -42,6 +43,22 @@ Page({
         }
       })
     }
+
+    wx.request({
+      url: 'http://localhost:8080/goal/getAll', //仅为示例，并非真实的接口地址
+      data: {
+      },
+      method: "GET",
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success: function (res) {
+        console.log(res.data);
+        that.setData({goalList: res.data.goalList});
+      }
+    })
+
+
   },
   getUserInfo: function(e) {
     console.log(e)

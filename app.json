@@ -17,7 +17,7 @@
     "list": [
       {
         "text": "汇报",
-        "pagePath": "pages/index/index"
+        "pagePath": "pages/report/report"
       },
       {
         "text": "打卡",
@@ -25,7 +25,7 @@
       },
       {
         "text": "目标",
-        "pagePath": "pages/goal/goal"
+        "pagePath": "pages/index/index"
       }
     ]
   }

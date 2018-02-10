@@ -80,19 +80,21 @@ Page({
         return false;
     }
     wx.request({
-      url: 'localhost:8080/goal', //仅为示例，并非真实的接口地址
+      url: 'http://localhost:8080/goal', //仅为示例，并非真实的接口地址
       data: {
         name: this.data.goalName,
-        startDate: this.data.startDate,
-        endDate: this.data.endDate
+        startTime: this.data.startDate,
+        endTime: this.data.endDate,
+        taskList: this.data.taskList
       },
+      method: "POST",
       header: {
         'content-type': 'application/json' // 默认值
       },
       success: function (res) {
         console.log(res.data)
-        wx.navigateTo({
-          url: '../index/index',
+        wx.switchTab({
+          url: '../../pages/index/index'
         })
       }
     })

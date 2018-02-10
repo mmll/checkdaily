@@ -47,9 +47,9 @@ Page({
         return false;
     }
     var taskItem = {
-      'taskName': this.data.taskName,
-      'taskPeriod': this.data.taskPeriod,
-      'taskTimes': this.data.taskTimes
+      'name': this.data.taskName,
+      'period': this.data.taskPeriod,
+      'times': this.data.taskTimes
     }
     
     var pages = getCurrentPages();
