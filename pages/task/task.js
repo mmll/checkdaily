@@ -49,7 +49,8 @@ Page({
     var taskItem = {
       'name': this.data.taskName,
       'period': this.data.taskPeriod,
-      'times': this.data.taskTimes
+      'times': "1",
+      'userId': "ameng"
     }
     
     var pages = getCurrentPages();

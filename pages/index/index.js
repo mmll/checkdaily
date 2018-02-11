@@ -57,9 +57,29 @@ Page({
         that.setData({goalList: res.data.goalList});
       }
     })
+  },
 
+  editGoal: function (e) {
+    var goalId = e.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: '../goal/goal?goalId='+goalId,
+    })
+    // wx.request({
+    //   url: 'http://localhost:8080/goal/'+goalId, //仅为示例，并非真实的接口地址
+    //   data: {
+    //   },
+    //   method: "GET",
+    //   header: {
+    //     'content-type': 'application/json' // 默认值
+    //   },
+    //   success: function (res) {
+    //     console.log(res.data);
+        
+    //   }
+    // })
 
   },
+  
   getUserInfo: function(e) {
     console.log(e)
     app.globalData.userInfo = e.detail.userInfo

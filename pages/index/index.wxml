@@ -3,7 +3,7 @@
   <view class="userinfo">
     <button bindtap='bindViewTap' send-message-path="pages/goal/goal" class="mui-btn mui-btn--fab mui-btn--primary"> + </button>
       <view wx:for="{{goalList}}">
-        <view >{{item.name}}, {{item.startTime}}, {{item.endTime}}</view>
+        <view bindtap='editGoal' data-id="{{item.id}}">{{item.name}}, {{item.startTime}}, {{item.endTime}}</view>
       </view>
   </view>
 </view>

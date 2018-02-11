@@ -3,14 +3,14 @@
 <view class="flex-wrp mui-panel" style="flex-direction:column">
 <view style='color:red' wx:if="{{isError}}">{{error}}</view>
   <view class="section" class="mui-textfield">
-  <input type="text" id="goalname" placeholder="名称" bindblur="inputBlur" auto-focus/>
+  <input type="text" id="goalname" placeholder="名称" bindblur="inputBlur" disabled="{{goalEditMode}}" auto-focus value="{{goalName}}"/>
   </view>
-  <picker mode="date" id="startDate" value="{{startDate}}" start="{{todayDate}}" end="" bindchange="bindDateChange" class="mui-select">
+  <picker mode="date" id="startDate" value="{{startDate}}" start="{{todayDate}}" end="" bindchange="bindDateChange" class="mui-select" disabled="{{goalEditMode}}">
     <view class="picker">
       起始日期: {{startDate}}
     </view>
   </picker>
-  <picker mode="date" id="endDate" value="{{endDate}}" start="{{endDateRange}}" bindchange="bindDateChange" >
+  <picker mode="date" id="endDate" value="{{endDate}}" start="{{endDateRange}}" bindchange="bindDateChange" disabled="{{goalEditMode}}">
     <view class="picker">
       结束日期: {{endDate}}
     </view>

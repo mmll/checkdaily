@@ -5,15 +5,42 @@ Page({
    * 页面的初始数据
    */
   data: {
+    goalEditMode: false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function (parameter) {
+    var that = this;
+    if (parameter.goalId){
+      wx.request({
+        url: 'http://localhost:8080/goal/' +parameter.goalId, //仅为示例，并非真实的接口地址
+        data: {
+        },
+        method: "GET",
+        header: {
+          'content-type': 'application/json' // 默认值
+        },
+        success: function (res) {
+          console.log(res.data);
+          that.bindGoal(res.data.goal);
+        }
+      })
+    }
     this.getStartDate()
   },
-
+  bindGoal: function(goal){
+    this.setData({ 
+      startDate: goal.startTime, 
+      endDate: goal.endTime, 
+      taskList: goal.taskList,
+      goalName: goal.name,
+      goalId : goal.id
+      });
+    this.setData({ goalEditMode: true});
+    var query = wx.createSelectorQuery().in(this);
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -79,15 +106,22 @@ Page({
       this.setData({ error: "填写完整内容", isError: true })
         return false;
     }
+    if (this.data.goalId){
+      var method = "PUT"
+    }
+    else{
+      var method = "POST"
+    }
     wx.request({
       url: 'http://localhost:8080/goal', //仅为示例，并非真实的接口地址
       data: {
         name: this.data.goalName,
         startTime: this.data.startDate,
         endTime: this.data.endDate,
-        taskList: this.data.taskList
+        taskList: this.data.taskList,
+        userId:"ameng"
       },
-      method: "POST",
+      method: method,
       header: {
         'content-type': 'application/json' // 默认值
       },
@@ -112,9 +146,6 @@ Page({
       case "startDate":
         this.setData({
           startDate: e.detail.value
-        })
-        this.setData({
-          enddateRange: e.detail.value
         })
       break;
       case 'endDate':
